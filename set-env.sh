@@ -2,7 +2,8 @@
 
 set -eo pipefail
 
-export NODE_PATH="$(readlink -e $(which node) | sed -E 's/\/bin\/node//g')"
+NODE_PATH="$(readlink -e $(which node) | sed -E 's/\/bin\/node//g')"
+export NODE_PATH
 export SOURCE_REPO_NAME=${PWD##*/}
 
 export DOCKER_BUILDKIT=1
@@ -20,6 +21,6 @@ echo "##   DOCKER_HOST: $DOCKER_HOST                        "
 echo "                                                                                  "
 echo "###################################################################################################################"
 
-corepack prepare pnpm@9.11.0 --activate
-corepack use pnpm@9.11.0
+corepack prepare pnpm@10.10.0 --activate
+corepack use pnpm@10.10.0
 pnpm --frozen-lockfile --strict-peer-dependencies recursive install
